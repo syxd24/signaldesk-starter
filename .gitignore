@@ -1,0 +1,21 @@
+.env
+.env.*
+!.env.example
+__pycache__/
+.pytest_cache/
+.venv/
+.vercel/
+.uv-cache/
+imports/*
+!imports/.gitkeep
+*.csv
+!sample-data/demo-leads.csv
+*.jsonl
+**/*private*
+**/*real-clay*
+*.sqlite
+*.db
+.DS_Store
+
+# Local release artifact
+dist/

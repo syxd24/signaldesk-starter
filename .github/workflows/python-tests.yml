@@ -1,0 +1,21 @@
+name: Python tests
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  unit-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      SUPABASE_URL: ''
+      SUPABASE_SERVICE_ROLE_KEY: ''
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run tests (standard library only)
+        run: python -m unittest discover -s tests -v
+      - name: Validate demo CSV
+        run: python src/signaldesk.py prepare sample-data/demo-leads.csv --output imports/demo.jsonl
